@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://player/Whoosh.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 8.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 2
@@ -24,3 +27,11 @@ stream = ExtResource( 3 )
 
 [node name="WhooshSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+
+[node name="DetectArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="DetectArea" to="." method="_on_Area2D_body_entered"]

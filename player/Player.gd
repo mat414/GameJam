@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal char_stuck
+
 const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
@@ -138,6 +140,12 @@ func _on_Level_level_state_changed(is_heaven):
 	if is_heaven:
 		jump_max_count = 2
 		dash_ability_enabled = false
+		$DetectArea.collision_mask = 4
 	else:
 		jump_max_count = 1
 		dash_ability_enabled = true
+		$DetectArea.collision_mask = 2
+
+
+func _on_Area2D_body_entered(body):
+	emit_signal("char_stuck")

@@ -32,6 +32,7 @@ one_shot = true
 one_shot = true
 
 [connection signal="level_state_changed" from="." to="Player" method="_on_Level_level_state_changed"]
+[connection signal="char_stuck" from="Player" to="." method="_on_Player_char_stuck"]
 [connection signal="timeout" from="ShowTimer" to="." method="_on_ShowTimer_timeout"]
 [connection signal="timeout" from="SwitchVisTimer" to="." method="_on_SwitchVisTimer_timeout"]
 [connection signal="timeout" from="SwitchMaskTimer" to="." method="_on_SwitchMaskTimer_timeout"]

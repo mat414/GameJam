@@ -58,3 +58,8 @@ func _on_SwitchMaskTimer_timeout():
 	
 	emit_signal("level_state_changed", mask_state == Heaven)
 
+
+
+func _on_Player_char_stuck():
+	$ShowTimer.stop()
+	print("You died")
