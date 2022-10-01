@@ -3,11 +3,78 @@ extends KinematicBody2D
 const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
-const JUMP_SPEED = 250
+const JUMP_SPEED = 150
+
+var jump_key_pressed = false
+var jump_key_hold_time = 0
+var jump_max_hold_time = 0.3
+var jump_max_count = 2
+var jump_current_count = 0
+var was_jumping = false
 
 var velocity = Vector2()
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _input(event):
+	if event.is_action_pressed("jump"):
+		jump()
+	elif event.is_action_released("jump"):
+		stop_jumping()
+
+func jump():
+	jump_key_pressed = true
+	jump_key_hold_time = 0
+	
+func stop_jumping():
+	jump_key_pressed = false
+	reset_jump_state()
+	
+func check_jump_input(delta):
+	if jump_key_pressed:
+		var is_first_jump = jump_current_count == 0
+		if is_first_jump && !is_on_floor():
+			jump_current_count += 1
+			
+		# Actually do the jump
+		var did_jump = can_jump()
+		if did_jump:
+			velocity.y = -JUMP_SPEED
+			
+			if !was_jumping:
+				jump_current_count += 1
+				
+		was_jumping = did_jump
+	
+func clear_jump_input(delta):
+	if jump_key_pressed:
+		jump_key_hold_time += delta
+		
+		if jump_key_hold_time >= jump_max_hold_time:
+			jump_key_pressed = false
+	else:
+		was_jumping = false	
+	
+func can_jump():
+	var jump_allowed = true
+	if !was_jumping || jump_max_hold_time <= 0:
+		if jump_current_count == 0 && !is_on_floor():
+			jump_allowed = jump_current_count + 1 < jump_max_count
+		else:
+			jump_allowed = jump_current_count < jump_max_count
+	else:
+		var jump_key_held = (jump_key_pressed && jump_key_hold_time < jump_max_hold_time)
+		jump_allowed = jump_key_held && ((jump_current_count < jump_max_count) || (was_jumping && jump_current_count == jump_max_count))
+	
+	return jump_allowed
+
+func reset_jump_state():
+	jump_key_pressed = false
+	was_jumping = false
+	jump_key_hold_time = 0
+	
+	if is_on_floor():
+		jump_current_count = 0
 
 func _physics_process(delta):
 	# Horizontal movement code. First, get the player's input.
@@ -23,10 +90,13 @@ func _physics_process(delta):
 
 	# Vertical movement code. Apply gravity.
 	velocity.y += gravity * delta
+	
+	check_jump_input(delta)
+	clear_jump_input(delta)
 
 	# Move based on the velocity and snap to the ground.
 	velocity = move_and_slide_with_snap(velocity, transform.y, -1 * transform.y)
 
 	# Check for jumping. is_on_floor() must be called after movement code.
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		velocity.y = -JUMP_SPEED
+	if is_on_floor():
+		reset_jump_state()
