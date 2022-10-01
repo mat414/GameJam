@@ -3,7 +3,7 @@ extends KinematicBody2D
 const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
-const JUMP_SPEED = 200
+const JUMP_SPEED = 250
 
 var velocity = Vector2()
 
@@ -25,7 +25,7 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 
 	# Move based on the velocity and snap to the ground.
-	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN, Vector2.UP)
+	velocity = move_and_slide_with_snap(velocity, transform.y, -1 * transform.y)
 
 	# Check for jumping. is_on_floor() must be called after movement code.
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
