@@ -13,6 +13,8 @@ var jump_max_count = 2
 var jump_current_count = 0
 var was_jumping = false
 
+var time_between_dashes = 0.1
+var time_since_last_dash = 0
 var can_dash = true
 var was_dashing = false
 var dash_direction = 0
@@ -101,7 +103,7 @@ func _physics_process(delta):
 	check_jump_input(delta)
 	clear_jump_input(delta)
 	
-	if can_dash && walk != 0 &&  !was_dashing && Input.is_action_just_pressed("dash"):
+	if can_dash && time_since_last_dash > time_between_dashes &&  walk != 0 &&  !was_dashing && Input.is_action_just_pressed("dash"):
 		was_dashing = true
 		can_dash = false
 		dash_direction = sign(walk)
@@ -114,6 +116,9 @@ func _physics_process(delta):
 		if dash_time_remaining <= 0:
 			dash_time_remaining = 0
 			was_dashing = false
+			time_since_last_dash = 0
+	else:
+		time_since_last_dash += delta
 
 	# Move based on the velocity and snap to the ground.
 	velocity = move_and_slide_with_snap(velocity, transform.y, -1 * transform.y)
