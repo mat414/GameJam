@@ -13,6 +13,7 @@ var jump_max_count = 2
 var jump_current_count = 0
 var was_jumping = false
 
+var dash_ability_enabled = true
 var time_between_dashes = 0.1
 var time_since_last_dash = 0
 var can_dash = true
@@ -30,6 +31,9 @@ func _input(event):
 		jump()
 	elif event.is_action_released("jump"):
 		stop_jumping()
+
+func on_jumped():
+	$JumpSound.play()
 
 func jump():
 	jump_key_pressed = true
@@ -52,6 +56,7 @@ func check_jump_input(delta):
 			
 			if !was_jumping:
 				jump_current_count += 1
+				on_jumped()
 				
 		was_jumping = did_jump
 	
@@ -103,11 +108,12 @@ func _physics_process(delta):
 	check_jump_input(delta)
 	clear_jump_input(delta)
 	
-	if can_dash && time_since_last_dash > time_between_dashes &&  walk != 0 &&  !was_dashing && Input.is_action_just_pressed("dash"):
+	if dash_ability_enabled && !is_on_floor() && can_dash && time_since_last_dash > time_between_dashes &&  walk != 0 && !was_dashing && Input.is_action_just_pressed("jump"):
 		was_dashing = true
 		can_dash = false
 		dash_direction = sign(walk)
 		dash_time_remaining = dash_max_time
+		$WhooshSound.play()
 		
 	if was_dashing:
 		velocity.x = dash_direction * DASH_SPEED
@@ -128,3 +134,10 @@ func _physics_process(delta):
 		reset_jump_state()
 		can_dash = true
 	
+func _on_Level_level_state_changed(is_heaven):
+	if is_heaven:
+		jump_max_count = 2
+		dash_ability_enabled = false
+	else:
+		jump_max_count = 1
+		dash_ability_enabled = true

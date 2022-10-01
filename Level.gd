@@ -9,6 +9,8 @@ var shift_bg = Gradient.new()
 var vis_state
 var mask_state
 
+signal level_state_changed(state)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	vis_state = Hell
@@ -17,6 +19,8 @@ func _ready():
 	$Heaven.modulate.a = 0
 	shift_bg.set_color(0, hell_bg)
 	shift_bg.set_color(1, heaven_bg)
+	
+	emit_signal("level_state_changed", false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -51,4 +55,6 @@ func _on_SwitchMaskTimer_timeout():
 	else:
 		mask_state = Hell
 	$Player.collision_mask ^= 0x6
+	
+	emit_signal("level_state_changed", mask_state == Heaven)
 

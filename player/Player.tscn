@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.png" type="Texture" id=2]
+[ext_resource path="res://player/Jump.wav" type="AudioStream" id=3]
+[ext_resource path="res://player/Whoosh.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -16,3 +18,9 @@ region_rect = Rect2( 0, 0, 20, 40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="WhooshSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
