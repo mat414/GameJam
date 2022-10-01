@@ -14,6 +14,7 @@ func _ready():
 	vis_state = Hell
 	mask_state = Hell
 	$Background.color = hell_bg
+	$Heaven.modulate.a = 0
 	shift_bg.set_color(0, hell_bg)
 	shift_bg.set_color(1, heaven_bg)
 
