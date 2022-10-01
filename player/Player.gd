@@ -4,6 +4,7 @@ const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
 const JUMP_SPEED = 150
+const DASH_SPEED = 500
 
 var jump_key_pressed = false
 var jump_key_hold_time = 0
@@ -11,6 +12,12 @@ var jump_max_hold_time = 0.3
 var jump_max_count = 2
 var jump_current_count = 0
 var was_jumping = false
+
+var can_dash = true
+var was_dashing = false
+var dash_direction = 0
+var dash_time_remaining = 0
+var dash_max_time = 0.12
 
 var velocity = Vector2()
 
@@ -93,6 +100,20 @@ func _physics_process(delta):
 	
 	check_jump_input(delta)
 	clear_jump_input(delta)
+	
+	if can_dash && walk != 0 &&  !was_dashing && Input.is_action_just_pressed("dash"):
+		was_dashing = true
+		can_dash = false
+		dash_direction = sign(walk)
+		dash_time_remaining = dash_max_time
+		
+	if was_dashing:
+		velocity.x = dash_direction * DASH_SPEED
+		dash_time_remaining -= delta
+		velocity.y = 0
+		if dash_time_remaining <= 0:
+			dash_time_remaining = 0
+			was_dashing = false
 
 	# Move based on the velocity and snap to the ground.
 	velocity = move_and_slide_with_snap(velocity, transform.y, -1 * transform.y)
@@ -100,3 +121,5 @@ func _physics_process(delta):
 	# Check for jumping. is_on_floor() must be called after movement code.
 	if is_on_floor():
 		reset_jump_state()
+		can_dash = true
+	
