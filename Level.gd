@@ -27,6 +27,8 @@ func _ready():
 	shift_bg.set_color(1, heaven_bg)
 	$Player/AnimatedSprite.animation = "devil"
 	
+	$HellMusic.play()
+	
 	emit_signal("level_state_changed", false)
 	
 	#$Player.connect("coins_changed", $HUD, "_on_Player_coins_changed")
@@ -61,10 +63,16 @@ func _on_SwitchVisTimer_timeout():
 		$Background.color = heaven_bg
 		$Heaven.modulate.a = 1
 		$Hell.modulate.a = 0
+		
+		$HeavenMusic.play()
+		$HellMusic.stop()
 	else: 
 		$Background.color = hell_bg
 		$Heaven.modulate.a = 0
 		$Hell.modulate.a = 1
+		
+		$HeavenMusic.stop()
+		$HellMusic.play()
 
 
 func _on_SwitchMaskTimer_timeout():
@@ -74,6 +82,7 @@ func _on_SwitchMaskTimer_timeout():
 	else:
 		mask_state = Hell
 		$Player/AnimatedSprite.animation = "devil"
+		
 	$Player.collision_mask ^= 0x6
 	
 	emit_signal("level_state_changed", mask_state == Heaven)

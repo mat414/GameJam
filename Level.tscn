@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Hell.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://ui/UI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level/RespawnPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://obstacles/KillVolume.tscn" type="PackedScene" id=7]
+[ext_resource path="res://music/heaven_music.wav" type="AudioStream" id=8]
+[ext_resource path="res://music/hell_music.wav" type="AudioStream" id=9]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
@@ -53,6 +55,14 @@ one_shot = true
 
 [node name="SwitchMaskTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HellMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -30.0
+
+[node name="HeavenMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = -40.0
 
 [connection signal="level_state_changed" from="." to="Player" method="_on_Level_level_state_changed"]
 [connection signal="you_win" from="." to="HUD" method="_on_Level_you_win"]
