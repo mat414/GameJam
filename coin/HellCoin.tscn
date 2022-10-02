@@ -45,10 +45,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="HellCoin" type="Node2D"]
+[node name="HellCoin" type="Node2D" groups=["Coins", "HellCoins"]]
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -58,7 +60,7 @@ shape = SubResource( 1 )
 modulate = Color( 1, 0.843137, 0.301961, 1 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 8 )
-frame = 4
+frame = 1
 playing = true
 
 [node name="CoinSound" type="AudioStreamPlayer2D" parent="."]

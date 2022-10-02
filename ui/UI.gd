@@ -5,10 +5,16 @@ extends CanvasLayer
 # var a = 2
 # var b = "text"
 
+var total_hell_coins = 0
+var total_heaven_coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	total_heaven_coins = (get_tree().get_nodes_in_group("HeavenCoins").size())
+	total_hell_coins = (get_tree().get_nodes_in_group("HellCoins").size())
+	
+	$HeavenCoinLabel.text = (total_heaven_coins) as String
+	$HellCoinLabel.text = (total_hell_coins as String)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,5 +22,6 @@ func _ready():
 #	pass
 
 func _on_Player_coins_changed(new_heaven_coins, new_hell_coins):
-	$HeavenCoinLabel.text = (new_heaven_coins as String)
-	$HellCoinLabel.text = (new_hell_coins as String)
+
+	$HeavenCoinLabel.text = (total_heaven_coins - new_heaven_coins) as String
+	$HellCoinLabel.text = (total_hell_coins - new_hell_coins) as String
