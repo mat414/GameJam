@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://level/heaven_tiles.png" type="Texture" id=1]
+[ext_resource path="res://HeavenMoveHorz.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
 resource_name = "leftright"
@@ -23,6 +24,8 @@ tracks/0/keys = {
 extents = Vector2( 32, 28 )
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+to = Vector2( 100, 0 )
 
 [node name="HeavenMovingHorz" type="KinematicBody2D" parent="."]
 collision_layer = 4
