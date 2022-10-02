@@ -20,7 +20,7 @@ func _ready():
 
 func set_active(is_active):
 	active = is_active
-	print("I've been set to active: ", active)
+
 	# Do graphical updates here
 	$AnimatedSprite.animation = "active" if active else "inactive"
 
