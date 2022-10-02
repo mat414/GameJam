@@ -904,6 +904,7 @@ tile_data = PoolIntArray( 262147, 5, 0, 262148, 7, 0, 327686, 5, 0, 327687, 7, 0
 
 [node name="HeavenMovingHorz" parent="." instance=ExtResource( 2 )]
 position = Vector2( 416, 240 )
+to = Vector2( 600, 0 )
 
 [node name="HeavenCoin3" parent="HeavenMovingHorz/HeavenMovingHorz/Sprite" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1, -73 )
