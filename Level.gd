@@ -25,7 +25,7 @@ func _ready():
 	
 	emit_signal("level_state_changed", false)
 	
-	$Player.connect("coins_changed", $HUD, "_on_Player_coins_changed")
+	#$Player.connect("coins_changed", $HUD, "_on_Player_coins_changed")
 	for respawn_point in get_tree().get_nodes_in_group("Respawn"):
 		respawn_point.connect("respawn_point_touched", self, "set_respawn_point")
 
