@@ -58,10 +58,9 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D"]
 modulate = Color( 0.454902, 0.439216, 0.392157, 1 )
-rotation = 3.14159
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 8 )
-frame = 1
+frame = 5
 playing = true
 
 [node name="CoinSound" type="AudioStreamPlayer2D" parent="."]
