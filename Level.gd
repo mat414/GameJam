@@ -21,7 +21,7 @@ signal you_win
 func _ready():
 	vis_state = Hell
 	mask_state = Hell
-	$Background.color = hell_bg
+	$Player/Camera2D/Background.color = hell_bg
 	$Heaven.modulate.a = 0
 	shift_bg.set_color(0, hell_bg)
 	shift_bg.set_color(1, heaven_bg)
@@ -45,11 +45,11 @@ func _process(delta):
 		if vis_state == Hell:
 			$Hell.modulate.a = 1-alpha
 			$Heaven.modulate.a = alpha
-			$Background.color = shift_bg.interpolate(alpha)
+			$Player/Camera2D/Background.color = shift_bg.interpolate(alpha)
 		else:
 			$Hell.modulate.a = alpha
 			$Heaven.modulate.a = 1-alpha
-			$Background.color = shift_bg.interpolate(1-alpha)
+			$Player/Camera2D/Background.color = shift_bg.interpolate(1-alpha)
 
 
 func _on_ShowTimer_timeout():
@@ -60,14 +60,14 @@ func _on_ShowTimer_timeout():
 func _on_SwitchVisTimer_timeout():
 	vis_state = Heaven if vis_state == Hell else Hell
 	if vis_state == Heaven:
-		$Background.color = heaven_bg
+		$Player/Camera2D/Background.color = heaven_bg
 		$Heaven.modulate.a = 1
 		$Hell.modulate.a = 0
 		
 		$HeavenMusic.play()
 		$HellMusic.stop()
 	else: 
-		$Background.color = hell_bg
+		$Player/Camera2D/Background.color = hell_bg
 		$Heaven.modulate.a = 0
 		$Hell.modulate.a = 1
 		
