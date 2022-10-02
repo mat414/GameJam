@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
+"base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
@@ -70,9 +70,13 @@ dash={
 2d_render/layer_1="player"
 2d_render/layer_2="hell"
 2d_render/layer_3="heaven"
+2d_render/layer_4="coin_hell"
+2d_render/layer_5="coin_heaven"
 2d_physics/layer_1="player"
 2d_physics/layer_2="hell"
 2d_physics/layer_3="heaven"
+2d_physics/layer_4="coin_hell"
+2d_physics/layer_5="coin_heaven"
 
 [mono]
 

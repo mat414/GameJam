@@ -21,6 +21,8 @@ func _ready():
 	shift_bg.set_color(1, heaven_bg)
 	
 	emit_signal("level_state_changed", false)
+	
+	$Player.connect("coins_changed", $HUD, "_on_coins_changed")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

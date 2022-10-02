@@ -1,12 +1,16 @@
 extends KinematicBody2D
 
 signal char_stuck
+signal coins_changed(new_heaven_coins, new_hell_coins)
 
 const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
 const JUMP_SPEED = 150
 const DASH_SPEED = 500
+
+var heaven_coins = 0 setget heaven_coin_set
+var hell_coins = 0 setget hell_coin_set
 
 var jump_key_pressed = false
 var jump_key_hold_time = 0
@@ -35,6 +39,8 @@ func _input(event):
 		stop_jumping()
 
 func on_jumped():
+	# Additional jumps get pitched slightly higher
+	$JumpSound.pitch_scale = 1 + (jump_current_count - 1) * 0.2
 	$JumpSound.play()
 
 func jump():
@@ -115,6 +121,8 @@ func _physics_process(delta):
 		can_dash = false
 		dash_direction = sign(walk)
 		dash_time_remaining = dash_max_time
+		# Random pitch for dash
+		$WhooshSound.pitch_scale = rand_range(0.8, 1.2)
 		$WhooshSound.play()
 		
 	if was_dashing:
@@ -149,3 +157,14 @@ func _on_Level_level_state_changed(is_heaven):
 
 func _on_Area2D_body_entered(body):
 	emit_signal("char_stuck")
+	
+func heaven_coin_set(new_heaven_coins):
+	heaven_coins = new_heaven_coins
+	
+	emit_signal("coins_changed", heaven_coins, hell_coins)
+	
+func hell_coin_set(new_hell_coins):
+	hell_coins = new_hell_coins
+	
+	emit_signal("coins_changed", heaven_coins, hell_coins)
+	
