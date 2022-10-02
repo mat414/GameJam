@@ -27,7 +27,7 @@ func _ready():
 	shift_bg.set_color(1, heaven_bg)
 	$Player/AnimatedSprite.animation = "devil"
 	
-	$HellMusic.play()
+	$Player/Camera2D/HellMusic.play()
 	
 	emit_signal("level_state_changed", false)
 	
@@ -64,15 +64,15 @@ func _on_SwitchVisTimer_timeout():
 		$Heaven.modulate.a = 1
 		$Hell.modulate.a = 0
 		
-		$HeavenMusic.play()
-		$HellMusic.stop()
+		$Player/Camera2D/HeavenMusic.play()
+		$Player/Camera2D/HellMusic.stop()
 	else: 
 		$Player/Camera2D/Background.color = hell_bg
 		$Heaven.modulate.a = 0
 		$Hell.modulate.a = 1
 		
-		$HeavenMusic.stop()
-		$HellMusic.play()
+		$Player/Camera2D/HeavenMusic.stop()
+		$Player/Camera2D/HellMusic.play()
 
 
 func _on_SwitchMaskTimer_timeout():

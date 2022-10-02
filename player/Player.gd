@@ -8,7 +8,7 @@ const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
 const JUMP_SPEED = 150
-const DASH_SPEED = 700
+const DASH_SPEED = 720
 
 var heaven_coins = 0 setget heaven_coin_set
 var hell_coins = 0 setget hell_coin_set
@@ -144,7 +144,8 @@ func _physics_process(delta):
 		time_since_last_dash += delta
 
 	# Move based on the velocity and snap to the ground.
-	velocity = move_and_slide_with_snap(velocity, transform.y, -1 * transform.y)
+	velocity = move_and_slide(velocity, Vector2.UP)
+	#velocity = move_and_slide_with_snap(velocity, transform.y, -1 * transform.y)
 
 	# Check for jumping. is_on_floor() must be called after movement code.
 	if is_on_floor():

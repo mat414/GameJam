@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/tilesheet.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://HellDoublePingPong.tscn" type="PackedScene" id=14]
 [ext_resource path="res://HellSinglePingPong.tscn" type="PackedScene" id=15]
 [ext_resource path="res://coin/HellCoin.tscn" type="PackedScene" id=16]
+[ext_resource path="res://obstacles/Crusher_Hell.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=29]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -1548,12 +1549,15 @@ position = Vector2( -1120, 539 )
 [node name="RespawnPoint3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1248, -96 )
 
+[node name="RespawnPoint4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -2996, -677 )
+
 [node name="KillVolume" parent="." instance=ExtResource( 7 )]
 position = Vector2( 424, 650 )
 scale = Vector2( 1280, 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 201, 300 )
+position = Vector2( 150, 300 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = -1
@@ -1569,12 +1573,22 @@ margin_right = 3895.0
 margin_bottom = 3796.0
 color = Color( 0.0823529, 0.541176, 0.678431, 1 )
 
+[node name="HellMusic" type="AudioStreamPlayer2D" parent="Player/Camera2D"]
+position = Vector2( 1504, 800 )
+stream = ExtResource( 9 )
+volume_db = -30.0
+
+[node name="HeavenMusic" type="AudioStreamPlayer2D" parent="Player/Camera2D"]
+position = Vector2( 1504, 800 )
+stream = ExtResource( 8 )
+volume_db = -40.0
+
 [node name="Heaven" type="TileMap" parent="."]
 tile_set = SubResource( 56 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -655385, 5, 0, -655384, 6, 0, -655383, 7, 0, -655379, 8, 0, -524304, 8, 0, -393235, 8, 0, -262164, 8, 0, -196630, 8, 0, -131096, 8, 0, -65558, 8, 0, -20, 8, 0, -65518, 5, 0, -65517, 6, 0, -65516, 7, 0, 65558, 8, 0, 262128, 25, 0, 262129, 2, 0, 262130, 2, 0, 262131, 2, 0, 262132, 2, 0, 262133, 26, 0, 196633, 8, 0, 327665, 0, 0, 327666, 0, 0, 327667, 0, 0, 327668, 0, 0, 262147, 5, 0, 262148, 7, 0, 262172, 8, 0, 393201, 0, 0, 393202, 0, 0, 393203, 0, 0, 393204, 0, 0, 327686, 5, 0, 327687, 7, 0, 458737, 0, 0, 458740, 0, 0, 393220, 5, 0, 393221, 7, 0, 393224, 8, 0, 393246, 5, 0, 393247, 7, 0, 524273, 0, 0, 524276, 0, 0, 458754, 5, 0, 458755, 7, 0, 589809, 0, 0, 589810, 0, 0, 589811, 0, 0, 589812, 0, 0, 524288, 1, 0, 524289, 3, 0, 655342, 4, 0, 655345, 0, 0, 655346, 0, 0, 655347, 0, 0, 655348, 0, 0, 589824, 0, 0, 589825, 0, 0, 589848, 4, 0 )
+tile_data = PoolIntArray( -1048603, 8, 0, -983073, 8, 0, -917543, 8, 0, -852025, 5, 0, -852024, 6, 0, -852023, 6, 0, -852022, 6, 0, -852021, 6, 0, -852020, 7, 0, -852013, 8, 0, -655385, 5, 0, -655384, 6, 0, -655383, 7, 0, -655379, 8, 0, -589875, 5, 0, -589874, 6, 0, -589873, 6, 0, -589872, 6, 0, -589871, 6, 0, -589870, 6, 0, -589869, 7, 0, -524304, 8, 0, -393235, 8, 0, -262164, 8, 0, -196630, 8, 0, -131096, 8, 0, -65558, 8, 0, -20, 8, 0, -65518, 5, 0, -65517, 6, 0, -65516, 7, 0, 65558, 8, 0, 262128, 25, 0, 262129, 2, 0, 262130, 2, 0, 262131, 2, 0, 262132, 2, 0, 262133, 26, 0, 196633, 8, 0, 327665, 0, 0, 327666, 0, 0, 327667, 0, 0, 327668, 0, 0, 262147, 5, 0, 262148, 7, 0, 262172, 8, 0, 393201, 0, 0, 393202, 0, 0, 393203, 0, 0, 393204, 0, 0, 327686, 5, 0, 327687, 7, 0, 458737, 0, 0, 458740, 0, 0, 393220, 5, 0, 393221, 7, 0, 393224, 8, 0, 393246, 5, 0, 393247, 7, 0, 524273, 0, 0, 524276, 0, 0, 458754, 5, 0, 458755, 7, 0, 589809, 0, 0, 589810, 0, 0, 589811, 0, 0, 589812, 0, 0, 524288, 1, 0, 524289, 3, 0, 655342, 4, 0, 655345, 0, 0, 655346, 0, 0, 655347, 0, 0, 655348, 0, 0, 589824, 0, 0, 589825, 0, 0, 589848, 4, 0 )
 
 [node name="Crusher" parent="Heaven" instance=ExtResource( 10 )]
 position = Vector2( 33, 150 )
@@ -1605,12 +1619,19 @@ from = Vector2( 600, 0 )
 [node name="HeavenCoin" parent="Heaven/HeavenSinglePingPong/Platform" index="4" instance=ExtResource( 12 )]
 position = Vector2( 0, -90 )
 
+[node name="HeavenCoin3" parent="Heaven" instance=ExtResource( 12 )]
+position = Vector2( -1692, -1247 )
+
+[node name="Crusher2" parent="Heaven" instance=ExtResource( 10 )]
+position = Vector2( -1696, -1284 )
+rotation = 1.57079
+
 [node name="Hell" type="TileMap" parent="."]
 tile_set = SubResource( 13 )
 collision_layer = 2
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -655384, 7, 0, -524304, 7, 0, -131096, 7, 0, -65517, 7, 0, -65514, 7, 0, -65510, 7, 0, -65505, 7, 0, -65499, 7, 0, 262128, 21, 0, 262129, 1, 0, 262130, 1, 0, 262131, 1, 0, 262132, 1, 0, 262133, 22, 0, 327665, 23, 0, 327666, 23, 0, 327667, 23, 0, 327668, 23, 0, 393201, 23, 0, 393202, 23, 0, 393203, 23, 0, 393204, 23, 0, 458737, 23, 0, 458738, 23, 0, 458739, 23, 0, 458740, 23, 0, 393216, 0, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 2, 0, 524273, 23, 0, 524275, 23, 0, 524276, 23, 0, 458752, 23, 0, 458753, 23, 0, 458754, 23, 0, 458755, 23, 0, 458756, 23, 0, 458757, 23, 0, 458761, 0, 0, 458762, 1, 0, 458763, 2, 0, 589811, 23, 0, 589812, 23, 0, 524288, 23, 0, 524289, 23, 0, 524290, 23, 0, 524291, 23, 0, 524292, 23, 0, 524293, 23, 0, 524297, 23, 0, 524298, 23, 0, 524299, 23, 0, 524308, 21, 0, 524309, 1, 0, 524310, 22, 0, 524314, 21, 0, 524315, 1, 0, 524316, 22, 0, 655341, 0, 0, 655342, 1, 0, 655343, 2, 0, 655345, 23, 0, 655346, 23, 0, 655347, 23, 0, 655348, 23, 0, 589824, 23, 0, 589825, 23, 0, 589826, 23, 0, 589827, 23, 0, 589828, 23, 0, 589829, 23, 0, 589833, 23, 0, 589834, 23, 0, 589835, 23, 0, 589845, 23, 0, 589851, 23, 0 )
+tile_data = PoolIntArray( -1638454, 10, 0, -1507384, 11, 0, -1376310, 10, 0, -1245240, 11, 0, -1114166, 10, 0, -983096, 11, 0, -917560, 18, 0, -852025, 4, 0, -852024, 5, 0, -852023, 5, 0, -852022, 5, 0, -852021, 5, 0, -852020, 6, 0, -852013, 9, 0, -852007, 9, 0, -852001, 9, 0, -851995, 9, 0, -786483, 7, 0, -786477, 16, 0, -786471, 16, 0, -786465, 16, 0, -786459, 16, 0, -720941, 24, 0, -720935, 24, 0, -720929, 24, 0, -720923, 24, 0, -655409, 11, 0, -655384, 7, 0, -589875, 4, 0, -589874, 5, 0, -589873, 5, 0, -589872, 5, 0, -589871, 5, 0, -589870, 5, 0, -589869, 6, 0, -589863, 7, 0, -589857, 7, 0, -589851, 7, 0, -524304, 7, 0, -131096, 7, 0, -65517, 7, 0, -65514, 7, 0, -65510, 7, 0, -65505, 7, 0, -65499, 7, 0, 262128, 21, 0, 262129, 1, 0, 262130, 1, 0, 262131, 1, 0, 262132, 1, 0, 262133, 22, 0, 327665, 23, 0, 327666, 23, 0, 327667, 23, 0, 327668, 23, 0, 393201, 23, 0, 393202, 23, 0, 393203, 23, 0, 393204, 23, 0, 458737, 23, 0, 458738, 23, 0, 458739, 23, 0, 458740, 23, 0, 393216, 0, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 2, 0, 524273, 23, 0, 524275, 23, 0, 524276, 23, 0, 458752, 23, 0, 458753, 23, 0, 458754, 23, 0, 458755, 23, 0, 458756, 23, 0, 458757, 23, 0, 458761, 0, 0, 458762, 1, 0, 458763, 2, 0, 589811, 23, 0, 589812, 23, 0, 524288, 23, 0, 524289, 23, 0, 524290, 23, 0, 524291, 23, 0, 524292, 23, 0, 524293, 23, 0, 524297, 23, 0, 524298, 23, 0, 524299, 23, 0, 524308, 21, 0, 524309, 1, 0, 524310, 22, 0, 524314, 21, 0, 524315, 1, 0, 524316, 22, 0, 655341, 0, 0, 655342, 1, 0, 655343, 2, 0, 655345, 23, 0, 655346, 23, 0, 655347, 23, 0, 655348, 23, 0, 589824, 23, 0, 589825, 23, 0, 589826, 23, 0, 589827, 23, 0, 589828, 23, 0, 589829, 23, 0, 589833, 23, 0, 589834, 23, 0, 589835, 23, 0, 589845, 23, 0, 589851, 23, 0 )
 
 [node name="HellDoublePingPong" parent="Hell" instance=ExtResource( 14 )]
 position = Vector2( -160, 240 )
@@ -1631,6 +1652,14 @@ position = Vector2( -1503, -749 )
 [node name="HellCoin2" parent="Hell" instance=ExtResource( 16 )]
 position = Vector2( 1760, 472 )
 
+[node name="HellCoin3" parent="Hell" instance=ExtResource( 16 )]
+position = Vector2( -3492, -1730 )
+
+[node name="Crusher" parent="Hell" instance=ExtResource( 17 )]
+position = Vector2( -3488, -1376 )
+rotation = 1.57079
+scale = Vector2( 0.399995, 1.8 )
+
 [node name="ShowTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
@@ -1641,14 +1670,6 @@ one_shot = true
 
 [node name="SwitchMaskTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="HellMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 9 )
-volume_db = -30.0
-
-[node name="HeavenMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
-volume_db = -40.0
 
 [connection signal="level_state_changed" from="." to="Player" method="_on_Level_level_state_changed"]
 [connection signal="you_win" from="." to="HUD" method="_on_Level_you_win"]
