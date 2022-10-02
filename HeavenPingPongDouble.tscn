@@ -9,7 +9,7 @@
 region_rect = Rect2( 320, 0, 64, 64 )
 
 [node name="CollisionShape2D" parent="HeavenMovingHorz" index="2"]
-position = Vector2( 32, -20 )
+position = Vector2( 32, -16 )
 
 [node name="Sprite2" parent="HeavenMovingHorz" index="3"]
 position = Vector2( 64, -16 )
