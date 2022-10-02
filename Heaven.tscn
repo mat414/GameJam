@@ -664,8 +664,8 @@ tile_data = PoolIntArray( 262147, 5, 0, 262148, 7, 0, 327686, 5, 0, 327687, 7, 0
 [node name="HeavenMovingHorz" parent="." instance=ExtResource( 2 )]
 position = Vector2( 416, 240 )
 
-[node name="HeavenCoin3" parent="HeavenMovingHorz" instance=ExtResource( 3 )]
-position = Vector2( 1, -89 )
+[node name="HeavenCoin3" parent="HeavenMovingHorz/HeavenMovingHorz/Sprite" index="0" instance=ExtResource( 3 )]
+position = Vector2( 1, -73 )
 
 [node name="HeavenCoin" parent="." instance=ExtResource( 3 )]
 position = Vector2( 255, 215 )
@@ -674,3 +674,5 @@ position = Vector2( 255, 215 )
 position = Vector2( 548, 346 )
 
 [connection signal="settings_changed" from="." to="HeavenMovingHorz" method="_on_Heaven_settings_changed"]
+
+[editable path="HeavenMovingHorz"]

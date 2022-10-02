@@ -47,8 +47,12 @@ func _on_SwitchVisTimer_timeout():
 	vis_state = Heaven if vis_state == Hell else Hell
 	if vis_state == Heaven:
 		$Background.color = heaven_bg
+		$Heaven.modulate.a = 1
+		$Hell.modulate.a = 0
 	else: 
 		$Background.color = hell_bg
+		$Heaven.modulate.a = 0
+		$Hell.modulate.a = 1
 
 
 func _on_SwitchMaskTimer_timeout():
