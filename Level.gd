@@ -23,7 +23,7 @@ func _ready():
 	
 	emit_signal("level_state_changed", false)
 	
-	$Player.connect("coins_changed", $HUD, "_on_coins_changed")
+	$Player.connect("coins_changed", $HUD, "_on_Player_coins_changed")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

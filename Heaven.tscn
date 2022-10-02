@@ -1,8 +1,9 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://level/heaven_tiles.png" type="Texture" id=1]
 [ext_resource path="res://HeavenMoveHorz.tscn" type="PackedScene" id=2]
 [ext_resource path="res://coin/HeavenCoin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://obstacles/Crusher_Heaven.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=29]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -899,7 +900,7 @@ tile_set = SubResource( 56 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 262147, 5, 0, 262148, 7, 0, 327686, 5, 0, 327687, 7, 0, 393220, 5, 0, 393221, 7, 0, 393224, 8, 0, 458754, 5, 0, 458755, 7, 0, 524288, 1, 0, 524289, 3, 0 )
+tile_data = PoolIntArray( 262147, 5, 0, 262148, 7, 0, 327686, 5, 0, 327687, 7, 0, 327694, 5, 0, 327695, 6, 0, 327696, 7, 0, 393220, 5, 0, 393221, 7, 0, 393224, 8, 0, 458754, 5, 0, 458755, 7, 0, 524288, 1, 0, 524289, 3, 0 )
 
 [node name="HeavenMovingHorz" parent="." instance=ExtResource( 2 )]
 position = Vector2( 416, 240 )
@@ -912,6 +913,9 @@ position = Vector2( 255, 215 )
 
 [node name="HeavenCoin2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 548, 346 )
+
+[node name="Crusher" parent="." instance=ExtResource( 4 )]
+position = Vector2( 33, 150 )
 
 [connection signal="settings_changed" from="." to="HeavenMovingHorz" method="_on_Heaven_settings_changed"]
 

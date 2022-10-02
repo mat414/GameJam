@@ -20,12 +20,17 @@ color = Color( 0.0823529, 0.541176, 0.678431, 1 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 201, 300 )
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+smoothing_enabled = true
+smoothing_speed = 12.0
+
 [node name="Heaven" parent="." instance=ExtResource( 3 )]
 
 [node name="Hell" parent="." instance=ExtResource( 2 )]
 
 [node name="ShowTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
 [node name="SwitchVisTimer" type="Timer" parent="."]
