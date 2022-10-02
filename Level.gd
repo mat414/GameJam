@@ -19,6 +19,7 @@ func _ready():
 	$Heaven.modulate.a = 0
 	shift_bg.set_color(0, hell_bg)
 	shift_bg.set_color(1, heaven_bg)
+	$Player/AnimatedSprite.animation = "devil"
 	
 	emit_signal("level_state_changed", false)
 	
@@ -58,8 +59,10 @@ func _on_SwitchVisTimer_timeout():
 func _on_SwitchMaskTimer_timeout():
 	if mask_state == Hell:
 		mask_state = Heaven
+		$Player/AnimatedSprite.animation = "angel"
 	else:
 		mask_state = Hell
+		$Player/AnimatedSprite.animation = "devil"
 	$Player.collision_mask ^= 0x6
 	
 	emit_signal("level_state_changed", mask_state == Heaven)

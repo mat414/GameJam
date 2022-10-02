@@ -98,6 +98,12 @@ func reset_jump_state():
 	if is_on_floor():
 		jump_current_count = 0
 
+func _process(delta):
+	if velocity.x < 0:
+		$AnimatedSprite.flip_h = true
+	elif velocity.x > 0:
+		$AnimatedSprite.flip_h = false
+
 func _physics_process(delta):
 	# Horizontal movement code. First, get the player's input.
 	var walk = WALK_FORCE * (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
