@@ -22,7 +22,7 @@ func _ready():
 	anim.value_track_set_update_mode(0, Animation.UPDATE_CONTINUOUS)
 	anim.loop = true
 
-	var anim_player = $HeavenMovingHorz/AnimationPlayer
+	var anim_player = $Platform/AnimationPlayer
 	anim_player.add_animation("test", anim)
 	anim_player.set_current_animation("test")
 	anim_player.play("test")
