@@ -23,6 +23,8 @@ func set_active(is_active):
 
 	# Do graphical updates here
 	$AnimatedSprite.animation = "active" if active else "inactive"
+	
+	$Particles2D.emitting = is_active
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":

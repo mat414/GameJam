@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/angel.png" type="Texture" id=2]
 [ext_resource path="res://player/Jump.wav" type="AudioStream" id=3]
 [ext_resource path="res://player/Whoosh.wav" type="AudioStream" id=4]
 [ext_resource path="res://player/devil.png" type="Texture" id=5]
+[ext_resource path="res://player/Death.wav" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 16.0
@@ -39,6 +40,9 @@ stream = ExtResource( 3 )
 
 [node name="WhooshSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 
 [node name="DetectArea" type="Area2D" parent="."]
 collision_mask = 2

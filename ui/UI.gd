@@ -25,3 +25,10 @@ func _on_Player_coins_changed(new_heaven_coins, new_hell_coins):
 
 	$HeavenCoinLabel.text = (total_heaven_coins - new_heaven_coins) as String
 	$HellCoinLabel.text = (total_hell_coins - new_hell_coins) as String
+
+func show_you_win(should_show):
+	$YouWin.visible = should_show
+
+
+func _on_Level_you_win():
+	show_you_win(true)

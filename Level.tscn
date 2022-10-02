@@ -55,7 +55,9 @@ one_shot = true
 one_shot = true
 
 [connection signal="level_state_changed" from="." to="Player" method="_on_Level_level_state_changed"]
+[connection signal="you_win" from="." to="HUD" method="_on_Level_you_win"]
 [connection signal="char_stuck" from="Player" to="." method="_on_Player_char_stuck"]
+[connection signal="coins_changed" from="Player" to="." method="_on_Player_coins_changed"]
 [connection signal="coins_changed" from="Player" to="HUD" method="_on_Player_coins_changed"]
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
 [connection signal="timeout" from="ShowTimer" to="." method="_on_ShowTimer_timeout"]

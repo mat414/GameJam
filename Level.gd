@@ -2,8 +2,8 @@ extends Node2D
 
 enum {Heaven, Hell}
 
-const hell_bg = Color8(82,9,9,255)
-const heaven_bg = Color8(21,138,173,255)
+export var hell_bg : Color = Color8(82,9,9,255)
+export var heaven_bg : Color = Color8(21,138,173,255)
 var shift_bg = Gradient.new()
 
 var vis_state
@@ -11,7 +11,11 @@ var mask_state
 
 var last_respawn_point = Vector2(200, 300)
 
+var total_hell_coins = 0
+var total_heaven_coins = 0
+
 signal level_state_changed(state)
+signal you_win
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +32,9 @@ func _ready():
 	#$Player.connect("coins_changed", $HUD, "_on_Player_coins_changed")
 	for respawn_point in get_tree().get_nodes_in_group("Respawn"):
 		respawn_point.connect("respawn_point_touched", self, "set_respawn_point")
+		
+	total_heaven_coins = (get_tree().get_nodes_in_group("HeavenCoins").size())
+	total_hell_coins = (get_tree().get_nodes_in_group("HellCoins").size())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -82,3 +89,8 @@ func _on_Player_player_died():
 
 func set_respawn_point(pos):
 	last_respawn_point = pos
+
+
+func _on_Player_coins_changed(new_heaven_coins, new_hell_coins):
+	if new_heaven_coins == total_heaven_coins && new_hell_coins == total_hell_coins:
+		emit_signal("you_win")

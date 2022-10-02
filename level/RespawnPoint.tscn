@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://level/RespawnPoint.gd" type="Script" id=1]
 [ext_resource path="res://level/RespawnPoint_active.png" type="Texture" id=2]
@@ -21,6 +21,28 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00340903 ), -1.61932, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 12, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 130.44
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel_random = 1.0
+angle = 355.3
+angle_random = 0.39
+scale_random = 0.35
+scale_curve = SubResource( 4 )
+
 [node name="RespawnPoint" type="Node2D" groups=["Respawn"]]
 script = ExtResource( 1 )
 
@@ -33,5 +55,13 @@ shape = SubResource( 1 )
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 2 )
 animation = "inactive"
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, 19 )
+emitting = false
+amount = 12
+lifetime = 0.5
+speed_scale = 0.5
+process_material = SubResource( 5 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

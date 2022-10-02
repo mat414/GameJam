@@ -163,10 +163,15 @@ func _on_Level_level_state_changed(is_heaven):
 
 
 func kill():
+	on_killed()
 	emit_signal("player_died")
 
 func _on_Area2D_body_entered(body):
+	on_killed()
 	emit_signal("char_stuck")
+	
+func on_killed():
+	$DeathSound.play()
 	
 func heaven_coin_set(new_heaven_coins):
 	heaven_coins = new_heaven_coins
