@@ -21,6 +21,7 @@ text = "0"
 align = 1
 
 [node name="Sprite" type="Sprite" parent="HellCoinLabel"]
+modulate = Color( 0.454902, 0.439216, 0.392157, 1 )
 position = Vector2( -2.45571e-05, 57 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
@@ -39,6 +40,7 @@ text = "0"
 align = 1
 
 [node name="Sprite" type="Sprite" parent="HeavenCoinLabel"]
+modulate = Color( 1, 0.843137, 0.301961, 1 )
 position = Vector2( 2, -21 )
 rotation = 3.14159
 scale = Vector2( 0.3, 0.3 )
