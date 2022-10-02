@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hell_music.ogg-1d1a7e14c6d7088ef50be57e706cd55e.oggstr"
+
+[deps]
+
+source_file="res://music/hell_music.ogg"
+dest_files=[ "res://.import/hell_music.ogg-1d1a7e14c6d7088ef50be57e706cd55e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
