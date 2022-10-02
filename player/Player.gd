@@ -8,7 +8,7 @@ const WALK_FORCE = 600
 const WALK_MAX_SPEED = 200
 const STOP_FORCE = 1300
 const JUMP_SPEED = 150
-const DASH_SPEED = 500
+const DASH_SPEED = 700
 
 var heaven_coins = 0 setget heaven_coin_set
 var hell_coins = 0 setget hell_coin_set
