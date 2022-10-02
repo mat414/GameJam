@@ -9,6 +9,8 @@ var shift_bg = Gradient.new()
 var vis_state
 var mask_state
 
+var last_respawn_point = Vector2(200, 300)
+
 signal level_state_changed(state)
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +26,8 @@ func _ready():
 	emit_signal("level_state_changed", false)
 	
 	$Player.connect("coins_changed", $HUD, "_on_Player_coins_changed")
+	for respawn_point in get_tree().get_nodes_in_group("Respawn"):
+		respawn_point.connect("respawn_point_touched", self, "set_respawn_point")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -70,5 +74,11 @@ func _on_SwitchMaskTimer_timeout():
 
 
 func _on_Player_char_stuck():
-	$ShowTimer.stop()
+	_on_Player_player_died()
+
+func _on_Player_player_died():
+	$Player.position = last_respawn_point
 	print("You died")
+
+func set_respawn_point(pos):
+	last_respawn_point = pos

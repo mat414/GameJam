@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal char_stuck
+signal player_died
 signal coins_changed(new_heaven_coins, new_hell_coins)
 
 const WALK_FORCE = 600
@@ -160,6 +161,9 @@ func _on_Level_level_state_changed(is_heaven):
 		dash_ability_enabled = true
 		$DetectArea.collision_mask = 2
 
+
+func kill():
+	emit_signal("player_died")
 
 func _on_Area2D_body_entered(body):
 	emit_signal("char_stuck")
