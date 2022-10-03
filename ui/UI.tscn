@@ -69,3 +69,33 @@ custom_fonts/font = SubResource( 2 )
 text = "YOU WIN!"
 align = 1
 valign = 1
+
+[node name="Instructions" type="Label" parent="."]
+visible = false
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 435.0
+margin_bottom = 174.0
+text = "Welcome to Heaven or Hell!
+
+Press 'A' for left, 'D' for right, 'Spacebar' jumps or dashes.
+
+The angel can double-jump, the demon can dash once in the air.
+
+The world and character changes every 10 seconds.
+
+Collect all the coins to win."
+
+[node name="HelpLabel" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 560.0
+margin_right = 124.0
+margin_bottom = 574.0
+text = "Press 'H' to toggle help"
+
+[node name="HelpTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="HelpTimer" to="." method="_on_HelpTimer_timeout"]

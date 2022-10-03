@@ -18,8 +18,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if Input.is_action_just_released("help"):
+		$Instructions.visible = false if $Instructions.visible else true
 
 func _on_Player_coins_changed(new_heaven_coins, new_hell_coins):
 
@@ -32,3 +33,7 @@ func show_you_win(should_show):
 
 func _on_Level_you_win():
 	show_you_win(true)
+
+
+func _on_HelpTimer_timeout():
+	$HelpLabel.visible = false
