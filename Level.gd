@@ -94,7 +94,7 @@ func _on_Player_char_stuck():
 
 func _on_Player_player_died():
 	$Player.position = last_respawn_point
-	print("You died")
+	$HUD.death_count += 1
 
 func set_respawn_point(pos):
 	last_respawn_point = pos

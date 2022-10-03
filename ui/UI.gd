@@ -8,6 +8,8 @@ extends CanvasLayer
 var total_hell_coins = 0
 var total_heaven_coins = 0
 
+var death_count = 0 setget on_death_set
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	total_heaven_coins = (get_tree().get_nodes_in_group("HeavenCoins").size())
@@ -37,3 +39,8 @@ func _on_Level_you_win():
 
 func _on_HelpTimer_timeout():
 	$HelpLabel.visible = false
+
+func on_death_set(new_val):
+	death_count = new_val
+	
+	$DeathCount.text = (death_count as String) + " Deaths"

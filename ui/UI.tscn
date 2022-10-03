@@ -98,4 +98,15 @@ wait_time = 20.0
 one_shot = true
 autostart = true
 
+[node name="DeathCount" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -229.0
+margin_top = 79.0
+margin_right = -11.0
+margin_bottom = 145.0
+custom_fonts/font = SubResource( 1 )
+text = "0 Deaths"
+align = 2
+
 [connection signal="timeout" from="HelpTimer" to="." method="_on_HelpTimer_timeout"]
