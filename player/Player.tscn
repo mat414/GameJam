@@ -43,6 +43,7 @@ stream = ExtResource( 4 )
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+volume_db = -10.0
 
 [node name="DetectArea" type="Area2D" parent="."]
 collision_mask = 2
